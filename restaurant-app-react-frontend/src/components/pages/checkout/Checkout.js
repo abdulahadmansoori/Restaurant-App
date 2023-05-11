@@ -11,7 +11,6 @@ import { cartSubTotal } from "../../../store/reducers/cartReducer";
 const Checkout = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state);
-
   return (
     <div className="checkout">
       <div className="checkout__left-section">
@@ -38,6 +37,7 @@ const Checkout = () => {
       <div className="checkout__right-section">
         {cart.map((cartItem) => (
           <CartItem {...cartItem} />
+          
         ))}
 
         <div className="cart-details">
@@ -48,21 +48,21 @@ const Checkout = () => {
 
           <div>
             <span>Shipping</span>
-            <span>Calculate at next step</span>
+            <span className="price">$2.99</span>
           </div>
 
           <div>
             <span>
-              Estimated taxes <QuestionCircleFilled className="question-mark" />
+              Estimated taxes 2% <QuestionCircleFilled className="question-mark" />
             </span>
-            <span className="price">$167.40</span>
+            <span className="price">${(dispatch(cartSubTotal())/100)*2}</span>
           </div>
         </div>
 
         <div className="cart-total">
           <span>Total</span>
           <span>
-            <span>USD</span> <span>$1,097.40</span>
+            <span>USD</span> <span>${((dispatch(cartSubTotal())/100)*2)+ dispatch(cartSubTotal()) + 2.99}</span>
           </span>
         </div>
       </div>

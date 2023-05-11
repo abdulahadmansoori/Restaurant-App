@@ -3,19 +3,19 @@ import { Badge } from "antd";
 
 import "./CartItem.css";
 
-const CartItem = ({ title, thumbnail, price, quantity }) => {
+const CartItem = ({ name, image, price, quantity, description }) => {
   return (
     <div className="cart-item">
       <div className="cart-item__info">
         <Badge count={quantity} color="#787778">
           <div className="image">
-            <img src={thumbnail} alt={title} />
+            <img src={image} alt={name} />
           </div>
         </Badge>
 
         <div>
-          <h4>{title}</h4>
-          <p>Mushrooms</p>
+          <h4>{name}</h4>
+          <p>{description}</p>
         </div>
       </div>
 

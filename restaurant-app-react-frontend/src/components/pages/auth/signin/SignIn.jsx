@@ -17,6 +17,7 @@ const SignIn = () => {
       .unwrap()
       .then((token) => {
         setToken(token);
+        // console.log(token)
         navigate("/");
         message.success("Login successful");
       })
@@ -52,7 +53,7 @@ const SignIn = () => {
                 <Input placeholder="Email" />
               </Form.Item> */}
               <Form.Item
-                name="username"
+                name="name"
                 rules={[
                   { required: true, message: "User Name is required" },
                   { type: "text", message: "Please enter a valid user name" },

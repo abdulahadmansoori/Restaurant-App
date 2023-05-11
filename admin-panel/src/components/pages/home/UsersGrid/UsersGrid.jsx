@@ -16,9 +16,9 @@ const UsersGrid = () => {
   // getting users using api
   const getusers = async () => {
     try {
-      setIsLoading(true);
+    //   setIsLoading(true);
       const { data } = await axios.get('http://localhost:8000/users/');
-      // console.log(data)
+      console.log(data)
       setusers(data);
     } catch (error) {
       setError(error.message);
@@ -28,7 +28,8 @@ const UsersGrid = () => {
   };
   const navigate = useNavigate();
   const updateBtnHandler = (id) => {
-    navigate('http://localhost:3000/update-user/' + id, { replace: true });
+    localStorage.setItem("updateId", id);
+    navigate('/update-user/', { replace: true });
   }
   const deleteBtnHandler = (id) => {
     if (window.confirm("Are you sure, You want to delete this user!")) {
@@ -53,6 +54,11 @@ const UsersGrid = () => {
   const { Title } = Typography;
   const columns = [
     {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
@@ -64,7 +70,7 @@ const UsersGrid = () => {
     },
     {
       title: 'Address',
-      dataIndex: 'addess',
+      dataIndex: 'address',
       key: 'address',
     },
     {

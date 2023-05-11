@@ -15,8 +15,8 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const { id } = action.payload;
-      const addedCartItem = state.find((item) => verifyId(item, id));
+      const { _id } = action.payload;
+      const addedCartItem = state.find((item) => verifyId(item, _id));
       if (addedCartItem) {
         addedCartItem.quantity = addedCartItem.quantity + 1;
       } else {
@@ -25,9 +25,9 @@ export const cartSlice = createSlice({
       }
     },
     deleteItem: (state, action) => {
-      const { id } = action.payload;
+      const { _id } = action.payload;
       const itemIndex = state.find((item, index) => {
-        if (verifyId(item, id)) {
+        if (verifyId(item, _id)) {
           return index;
         }
         return undefined;
@@ -35,8 +35,8 @@ export const cartSlice = createSlice({
       state.splice(itemIndex, 1);
     },
     setItemQuantity: (state, action) => {
-      const { id, mode } = action.payload;
-      const addedCartItem = state.find((item) => verifyId(item, id));
+      const { _id, mode } = action.payload;
+      const addedCartItem = state.find((item) => verifyId(item, _id));
       if (addedCartItem) {
         if (mode === "add") {
           addedCartItem.quantity = addedCartItem.quantity + 1;

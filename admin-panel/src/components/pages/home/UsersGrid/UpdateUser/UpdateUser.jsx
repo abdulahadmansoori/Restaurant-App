@@ -1,6 +1,7 @@
 import { Button, Form, Input, Select } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import TextArea from 'antd/es/input/TextArea';
 const { Option } = Select;
 const layout = {
@@ -17,25 +18,27 @@ const tailLayout = {
         span: 16,
     },
 };
-const UpdateProduct = () => {
+const UpdateUser = () => {
     const [error, setError] = useState(false);
-    const [product, setProduct] = useState({
+    const [user, setUser] = useState({
         "status": "",
         "name": "zxczxc",
-        "description": "",
-        "price": 0,
-        "image": ""
+        "email": "",
+        "passsword": "",
+        "address": "",
+        "phone": 0,
+        "isAdmin": false
     });
     const [form] = Form.useForm();
-    const id  = localStorage.getItem("updateId");
+    const id = localStorage.getItem("updateId");
 
     const onFinish = (values) => {
-        if (window.confirm("Are you sure, you want to Update this product Information?")) {
+        if (window.confirm("Are you sure, you want to Update this user Information?")) {
             let status = "";
             try {
-                axios.put('http://localhost:8000/products/' + id, values);
+                axios.put('http://localhost:8000/users/' + id, values);
                 console.log(values);
-                status = "Product Updated Succesfully";
+                status = "User Updated Succesfully";
                 // navigate('../', { replace: true });
             }
             catch (error) {
@@ -50,12 +53,12 @@ const UpdateProduct = () => {
     const onReset = () => {
         form.resetFields();
     };
-    const getProduct = async () => {
+    const getUser = async () => {
         try {
             // setIsLoading(true);
             const id = localStorage.getItem("updateId")
-            const { data } = await axios.get('http://localhost:8000/products/' + id);
-            setProduct(data);
+            const { data } = await axios.get('http://localhost:8000/Users/' + id);
+            setUser(data);
         } catch (error) {
             setError(error.message);
         } finally {
@@ -64,13 +67,13 @@ const UpdateProduct = () => {
     };
     useEffect(() => {
         (async () => {
-            await getProduct();
+            await getUser();
         })();
     }, []);
 
     return (
         <>
-            {form.setFieldsValue(product)};
+            {form.setFieldsValue(user)};
             <Form
                 {...layout}
                 form={form}
@@ -81,7 +84,7 @@ const UpdateProduct = () => {
                     margin: "5% auto"
                 }}
             >
-                <h1 style={{ textAlign: 'center', fontWeight: 600 }}>Update Product</h1>
+                <h1 style={{ textAlign: 'center', fontWeight: 600 }}>Update User</h1>
                 <Form.Item
                     name="name"
                     label="Name"
@@ -94,19 +97,19 @@ const UpdateProduct = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    name="description"
-                    label="Description"
+                    name="email"
+                    label="Email"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input />
+                    <Input type='email' />
                 </Form.Item>
                 <Form.Item
-                    name="price"
-                    label="Price"
+                    name="password"
+                    label="Password"
                     rules={[
                         {
                             required: true,
@@ -114,32 +117,43 @@ const UpdateProduct = () => {
                     ]}
                 >
                     <Input
-                        type="number"
+                        type="password"
                     />
                 </Form.Item>
                 <Form.Item
-                    name="image"
-                    label="Image"
+                    name="address"
+                    label="Address"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                         },
                     ]}
                 >
                     <TextArea rows={8} />
                 </Form.Item>
                 <Form.Item
-                    name="status"
-                    label="Status"
+                    name="phone"
+                    label="Phone"
                     rules={[
                         {
-                            required: true,
+                            required: false,
+                        },
+                    ]}
+                >
+                    <Input type='number' />
+                </Form.Item>
+                <Form.Item
+                    name="isAdmin"
+                    label="IsAdmin"
+                    rules={[
+                        {
+                            required: false,
                         },
                     ]}
                 >
                     <Select>
-                        <Option value="Avaliable">Avaliable</Option>
-                        <Option value="NotAvaliable">Not Avaliable</Option>
+                        <Option value={true}><CheckOutlined /> True</Option>
+                        <Option value={false}><CloseOutlined /> False</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item {...tailLayout}>
@@ -149,7 +163,7 @@ const UpdateProduct = () => {
                     <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
-                    <Button type="link" htmlType="button" href='http://localhost:3000/'>
+                    <Button type="link" htmlType="button" href='http://localhost:3000/users/'>
                         Cancel
                     </Button>
                 </Form.Item>
@@ -157,6 +171,6 @@ const UpdateProduct = () => {
         </>
     );
 }
-export default UpdateProduct;
+export default UpdateUser;
 
 // https://youtu.be/XxnUSZOgMLY

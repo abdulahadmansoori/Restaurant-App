@@ -1,15 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import dummyJson from "../../api/dummyJson";
+import axios from "axios";
+import { Cookies, useCookies } from "react-cookie";
 
 export const signinUser = createAsyncThunk(
   "user/signin",
-  async ({ username, password }) => {
-    const result = await dummyJson.post("auth/login", {
-      // username: "kminchelle",
-      // password: "0lelplR",
-      username,
-      password,
-    });
+  async ({ name, password }) => {
+    const result = await axios.post(`http://localhost:8000/users/signin/`, { name, password });
+    // const result = await dummyJson.post("auth/login", {
+    // //   // username: "kminchelle",
+    // //   // password: "0lelplR",
+    //   name,
+    //   password,
+    // });
+    console.log(result.data.token);
     return result.data.token;
   }
 );
@@ -17,21 +21,19 @@ export const signinUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
   "user/create",
 
-  async ({ username, email, password }) => {
-    return await dummyJson.post("auth/signup", {
-      username,
-      email,
-      password,
-    });
+  async (values) => {
+    return await axios.post('http://localhost:8000/users/add-user', values);
+    // return await dummyJson.post("auth/signup", {
+    //   username,
+    //   email,
+    //   password,
+    // });
   }
 );
 
-export const logoutUser = createAsyncThunk("user/logout", async () => {});
+export const logoutUser = createAsyncThunk("user/logout", async () => { });
 
-export const checkIsUserAuthenticated = createAsyncThunk(
-  "user/isAuthenticated",
-  async () => {}
-);
+export const checkIsUserAuthenticated = createAsyncThunk("user/isAuthenticated", async () => { });
 
 const initialState = {
   isAuthenticated: false,

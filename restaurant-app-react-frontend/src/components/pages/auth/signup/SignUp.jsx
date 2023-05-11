@@ -44,7 +44,7 @@ const SignUp = () => {
                 onFinish={createUserHandler}
               >
                 <Form.Item
-                  name="username"
+                  name="name"
                   rules={[
                     { required: true, message: "User Name is required" },
                     { type: "text", message: "Please enter a valid user name" },

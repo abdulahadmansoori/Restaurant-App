@@ -15,7 +15,7 @@ export const useIsLoggedIn = () => {
 export const useSetToken = () => {
   const [_, setCookie] = useCookies();
   return (token) => {
-    console.log(token);
+    // console.log(token);
     setCookie("token", token, { secure: true, sameSite: "lax" });
   };
 };

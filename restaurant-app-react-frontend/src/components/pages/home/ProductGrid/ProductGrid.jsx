@@ -38,6 +38,7 @@ const ProductGrid = () => {
     const product = products.find((product) => product._id === id);
     if (product) {
       dispatch(addItem(product));
+      console.log(product);
     }
   };
 

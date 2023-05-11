@@ -70,9 +70,9 @@ const Routes = () => {
         {
           index: true,
           element: (
-            <RequireAuth>
-              <Account />
-            </RequireAuth>
+            // <RequireAuth>
+            <Account />
+            // </RequireAuth>
           ),
         },
       ],

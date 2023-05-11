@@ -1,6 +1,5 @@
 import { Outlet, useParams, useRoutes } from "react-router-dom";
 import Layout from "../components/common/layout/Layout";
-import Account from "../components/pages/account/Account";
 import NonRequireAuth from "../components/pages/auth/NonRequireAuth";
 import RequireAuth from "../components/pages/auth/RequireAuth";
 import SignIn from "../components/pages/auth/signin/SignIn";
@@ -10,6 +9,9 @@ import AddProduct from "../components/pages/home/ProductGrid/AddProduct/AddProdu
 import UpdateProduct from "../components/pages/home/ProductGrid/UpdateProduct/UpdateProduct";
 import UsersGrid from "../components/pages/home/UsersGrid/UsersGrid";
 import AddUser from "../components/pages/home/UsersGrid/AddUser/AddUser";
+import Panel from "../components/pages/home/Panel/Panel";
+import ProductGrid from "../components/pages/home/ProductGrid/ProductGrid";
+import UpdateUser from "../components/pages/home/UsersGrid/UpdateUser/UpdateUser";
 
 const Routes = () => {
   const routes = [
@@ -20,6 +22,20 @@ const Routes = () => {
         index: true, element: (
           // <RequireAuth>
           <Home />
+          // <Panel children={<Home />}/>
+          // </RequireAuth>
+        )
+      }],
+    },
+    {
+      path: "/products",
+      element: <Layout children={<Outlet />} />,
+      children: [{
+        index: true, element: (
+          // <RequireAuth>
+          // <Panel children={<ProductGrid/>}/>
+          <ProductGrid/>
+          // <Panel/>
           // </RequireAuth>
         )
       }],
@@ -39,8 +55,7 @@ const Routes = () => {
       path: "/update-product/",
       exact:true,
       element: <Layout children={<Outlet />} />,
-      routes: [{
-        path:"/update-product/:id",
+      children: [{
         index: true, element: (
           // <RequireAuth>
           <UpdateProduct />
@@ -56,7 +71,7 @@ const Routes = () => {
           index: true,
           element: (
             // <RequireAuth>
-              <UsersGrid />
+            <UsersGrid />
             // </RequireAuth>
           ),
         },
@@ -72,6 +87,31 @@ const Routes = () => {
           // </RequireAuth>
         )
       }],
+    },
+    {
+      path: "/update-user",
+      element: <Layout children={<Outlet />} />,
+      children: [{
+        index: true, element: (
+          // <RequireAuth>
+          <UpdateUser />
+          // </RequireAuth>
+        )
+      }],
+    },
+    {
+      path: "/orders",
+      element: <Layout children={<Outlet />} />,
+      children: [
+        {
+          index: true,
+          element: (
+            // <RequireAuth>
+            <Panel children={<UsersGrid />}/>
+            // </RequireAuth>
+          ),
+        },
+      ],
     },
     {
       path: "/signin",

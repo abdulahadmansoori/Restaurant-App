@@ -1,4 +1,4 @@
-import { FileOutlined, PieChartOutlined, UserOutlined, TeamOutlined, DesktopOutlined} from '@ant-design/icons';
+import { PieChartOutlined, UserOutlined, TeamOutlined} from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
 import ProductGrid from '../ProductGrid/ProductGrid';
@@ -10,13 +10,11 @@ function getItem(label, key, icon, children) {
     children,
     label,
   };
-}
+};
 const items = [
   getItem('Products', '1', <PieChartOutlined />),
   getItem('Users', '2', <TeamOutlined />),
-  getItem('Admins', 'sub1', <UserOutlined />),
-//   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-//   getItem('Files', '9', <FileOutlined />),
+  getItem('Admins', '3', <UserOutlined />),
 ];
 const Panel = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,12 +28,6 @@ const Panel = () => {
       }}
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        {/* <div
-          style={{
-            height: 32,
-            margin: 16,
-            background: 'rgba(255, 255, 255, 0.2)',
-          }}><div/> */}
           <div style={{
             height: 32,
             margin: 16,
@@ -45,6 +37,7 @@ const Panel = () => {
             textAlign:"center",
             fontWeight:900,
           }}>Admin Panel</div>
+
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
       <Layout className="site-layout" style={{
@@ -75,9 +68,6 @@ const Panel = () => {
               background: colorBgContainer,
             }}
           >
-            {/* <Switch>
-
-            </Switch> */}
             <ProductGrid/>
           </div>
         </Content>

@@ -7,6 +7,7 @@ const form = require("./routes/form");
 const todo = require("./routes/todo");
 const auth = require("./routes/auth");
 const products = require("./routes/products");
+const users = require("./routes/users");
 const { verify } = require("./middlewares/auth");
 const mongoose = require("./models/connection");
 
@@ -27,5 +28,6 @@ app.use("/auth", auth);
 app.use("/todo", verify, todo);
 app.use("/form", form);
 app.use("/products", products);
+app.use("/users", users);
 
 app.listen(8000);

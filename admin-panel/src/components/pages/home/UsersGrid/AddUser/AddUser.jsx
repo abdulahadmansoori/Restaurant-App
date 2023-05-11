@@ -23,7 +23,7 @@ const AddUser = () => {
             try{
                 axios.post('http://localhost:8000/users/add-user', values);
                 status = "User Added Succesfully";
-                console.log(values)
+                console.log(values);
                 // form.resetFields();
             }
             catch(error){
@@ -118,9 +118,9 @@ const AddUser = () => {
                     ]}
                 >
                     {/* <Input type='checkbox' value={false}/> */}
-                    <Select >
-                        <Option value='true'>True</Option>
-                        <Option value='false'>False</Option>
+                    <Select>
+                        <Option value={true}>True</Option>
+                        <Option value={false}>False</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item {...tailLayout}>

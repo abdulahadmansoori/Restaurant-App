@@ -8,11 +8,7 @@ import { InnerPageBanner } from "../../common/banner/inner-page-banner/InnerPage
 import { useNavigate } from "react-router";
 import Container from "../../common/container/Container";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cartSubTotal,
-  deleteItem,
-  setItemQuantity,
-} from "../../../store/reducers/cartReducer";
+import { cartSubTotal, deleteItem, setItemQuantity, } from "../../../store/reducers/cartReducer";
 import { useIsLoggedIn } from "../auth/Auth";
 
 // const PRODUCTS = [
@@ -73,21 +69,26 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const isLoggedIn = useIsLoggedIn();
+
   const checkoutClickHandler = () => {
-    isLoggedIn ? navigate("/checkout") : navigate("/signin");
+    // isLoggedIn ? navigate("/checkout") : navigate("/signin");
+    navigate("/checkout")
   };
   const continueShoppingClickHandler = () => navigate("/");
 
   const cartItemMinusClickHandler = (id) => {
     dispatch(setItemQuantity({ id, mode: "remove" }));
+    console.log("remove "+id);
   };
 
   const cartItemPlusClickHandler = (id) => {
     dispatch(setItemQuantity({ id, mode: "add" }));
+    console.log("add "+id);
   };
 
   const deleteItemClickHandler = (id) => {
     dispatch(deleteItem(id));
+    console.log("delete "+id);
   };
 
   return (

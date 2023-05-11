@@ -20,6 +20,15 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true
+  },
+  createdOn: {
+    type: Date,
+    default: Date.now
+  },
+  status: {
+    type: String,
+    enum: ['Avaliable', 'NotAvaliable'],
+    default: "Avaliable",
   }
   // restaurant: {
   //   type: mongoose.Schema.Types.ObjectId,
