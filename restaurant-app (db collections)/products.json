@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "6452900b596e50790399b734"
+  },
+  "name": "Chicken Burger",
+  "description": "beta-lactamase inhibitory action of clavulanate extends the spectrum of amoxicillin",
+  "price": 7.99,
+  "image": "https://www.seriouseats.com/thmb/e16lLOoVEix_JZTv7iNyAuWkPn8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__09__20140918-jamie-olivers-comfort-food-insanity-burger-david-loftus-f7d9042bdc2a468fbbd50b10d467dafd.jpg",
+  "__v": 0,
+  "status": "Avaliable"
+},{
+  "_id": {
+    "$oid": "64552a044cd1ece188ce915e"
+  },
+  "name": "Margherita Pizza",
+  "description": "Tomato sauce, mozzarella, and fresh basil.",
+  "price": 10.99,
+  "image": "https://th.bing.com/th/id/R.c774a9fbb8db82d231b90220b21cb578?rik=r0hl7VqOgX2%2bfw&riu=http%3a%2f%2ffeaturednews.consulatehc.com%2fwp-content%2fuploads%2fPizzaMargherita-998x1024.jpg&ehk=MAt0SOCL3KyUtDjFE8IEun0cR6k5U7mBVHRicR63KmM%3d&risl=&pid=ImgRaw&r=0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64552ae54cd1ece188ce915f"
+  },
+  "name": "Chicken Alfredo",
+  "description": "Grilled chicken breast with fettuccine pasta in a rich, creamy Alfredo sauce.",
+  "price": 14.99,
+  "image": "https://th.bing.com/th/id/OIP.KpU7XerXTuT-Ja1gmD_jQAHaHa?pid=ImgDet&w=207&h=207&c=7&dpr=1.3",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64552b514cd1ece188ce9160"
+  },
+  "name": "Fish and Chips",
+  "description": "Fresh cod fillets lightly battered and fried to crispy perfection, served with French fries and tartar sauce.",
+  "price": 12.99,
+  "image": "https://th.bing.com/th/id/OIP.c5BvzwuDYOy-scu0Ct1OUQHaE6?w=285&h=189&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64552b8e4cd1ece188ce9161"
+  },
+  "name": "Caesar Salad",
+  "description": "Crisp romaine lettuce, Parmesan cheese, and croutons, dressed in a classic Caesar dressing.",
+  "price": 8.99,
+  "image": "https://th.bing.com/th/id/OIP.6uWnX_GDm4Xhv-F6zeqFhAHaE5?w=182&h=120&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645681ce78fadf396f1977c7"
+  },
+  "name": "Wrap au poulet grillé",
+  "description": "chicken fajitas recipe only has 5 ingredients! Quick and tasty, you can serve these fajitas with your favorite accompaniments.",
+  "price": 3.99,
+  "image": "https://i.pinimg.com/originals/1b/db/fb/1bdbfb846dd51f52dc7b8ddd9004e400.png",
+  "__v": 0,
+  "status": "Avaliable"
+}]

@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "645a5623aeea3ffa01bc75c6"
+  },
+  "name": "zxczx",
+  "email": "ah@ad",
+  "password": "uy84:V.aJ_BRuSi",
+  "address": "xcvxcv",
+  "phone": "41564563",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645a70918a497d2f8be41dbe"
+  },
+  "name": "aaaahad",
+  "email": "test@test.com",
+  "password": "aaaahad",
+  "isAdmin": true,
+  "status": true,
+  "createdOn": {
+    "$date": "2023-05-09T16:10:57.885Z"
+  },
+  "__v": 0,
+  "address": "fdsdfs",
+  "phone": "545455"
+},{
+  "_id": {
+    "$oid": "645c1847f500b5a0153ad34f"
+  },
+  "name": "asadsdada",
+  "email": "ah@ad.com",
+  "password": "uy84:V.aJ_BRuSi",
+  "address": "asdasdas",
+  "phone": "555555",
+  "isAdmin": false,
+  "status": false,
+  "createdOn": {
+    "$date": "2023-05-10T22:18:47.584Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645ea6549c5bd8bd27636798"
+  },
+  "name": "abdulahad",
+  "email": "abdulahad@ahad.com",
+  "password": "aaaaaaa",
+  "isAdmin": false,
+  "status": true,
+  "createdOn": {
+    "$date": "2023-05-12T20:49:24.381Z"
+  },
+  "__v": 0
+}]

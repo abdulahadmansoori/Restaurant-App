@@ -8,6 +8,7 @@ const todo = require("./routes/todo");
 const auth = require("./routes/auth");
 const products = require("./routes/products");
 const users = require("./routes/users");
+const panel = require("./routes/panel");
 const orders = require("./routes/orders");
 const { verify } = require("./middlewares/auth");
 const mongoose = require("./models/connection");
@@ -32,5 +33,6 @@ app.use("/form", form);
 app.use("/products", products);
 app.use("/users", users);
 app.use("/orders", orders);
+app.use("/panel", panel);
 
 app.listen(8000);
