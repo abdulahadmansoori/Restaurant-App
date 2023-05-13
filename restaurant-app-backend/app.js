@@ -8,8 +8,10 @@ const todo = require("./routes/todo");
 const auth = require("./routes/auth");
 const products = require("./routes/products");
 const users = require("./routes/users");
+const orders = require("./routes/orders");
 const { verify } = require("./middlewares/auth");
 const mongoose = require("./models/connection");
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -29,5 +31,6 @@ app.use("/todo", verify, todo);
 app.use("/form", form);
 app.use("/products", products);
 app.use("/users", users);
+app.use("/orders", orders);
 
 app.listen(8000);

@@ -2,6 +2,7 @@ import { Button, Form, Input, Select } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TextArea from 'antd/es/input/TextArea';
+import { useNavigate } from 'react-router-dom';
 const { Option } = Select;
 const layout = {
     labelCol: {
@@ -19,6 +20,7 @@ const tailLayout = {
 };
 const UpdateProduct = () => {
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
     const [product, setProduct] = useState({
         "status": "",
         "name": "zxczxc",
@@ -36,7 +38,7 @@ const UpdateProduct = () => {
                 axios.put('http://localhost:8000/products/' + id, values);
                 console.log(values);
                 status = "Product Updated Succesfully";
-                // navigate('../', { replace: true });
+                navigate('/products', { replace: true });
             }
             catch (error) {
                 console.log(error.message);
@@ -49,6 +51,9 @@ const UpdateProduct = () => {
     };
     const onReset = () => {
         form.resetFields();
+    };
+    const cancelBtnHandler = () => {
+        navigate('/products', { replace: true });
     };
     const getProduct = async () => {
         try {
@@ -149,7 +154,7 @@ const UpdateProduct = () => {
                     <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
-                    <Button type="link" htmlType="button" href='http://localhost:3000/'>
+                    <Button onClick={cancelBtnHandler}>
                         Cancel
                     </Button>
                 </Form.Item>

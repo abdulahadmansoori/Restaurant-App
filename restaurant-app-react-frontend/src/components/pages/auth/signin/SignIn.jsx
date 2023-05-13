@@ -17,7 +17,6 @@ const SignIn = () => {
       .unwrap()
       .then((token) => {
         setToken(token);
-        // console.log(token)
         navigate("/");
         message.success("Login successful");
       })
@@ -43,29 +42,19 @@ const SignIn = () => {
               }}
               onFinish={signInHandler}
             >
-              {/* <Form.Item
+              <Form.Item
                 name="email"
                 rules={[
                   { required: true, message: "Email is required" },
-                  { type: "email", message: "Please enter a valid email" },
-                ]}
-              >
-                <Input placeholder="Email" />
-              </Form.Item> */}
-              <Form.Item
-                name="name"
-                rules={[
-                  { required: true, message: "User Name is required" },
-                  { type: "text", message: "Please enter a valid user name" },
+                  { type: "text", message: "Please enter a valid Email" },
                   {
                     min: 5,
                     message: "Username must be minimum 5 characters.",
                   },
                 ]}
               >
-                <Input placeholder="User Name" />
+                <Input placeholder="Email" type="email"/>
               </Form.Item>
-
               <Form.Item
                 name="password"
                 rules={[

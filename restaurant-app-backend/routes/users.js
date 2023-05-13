@@ -13,15 +13,32 @@ router.get('/:id', async (req, res) => {
 });
 // getUserAuth
 router.post('/signin', async (req, res) => {
-    const { name, password } = req.body;
-    const user = await User.findOne({ name: name });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
     if (!user) {
-        return res.status(401).json({ message: "Invalid username or password" })
+        return res.status(401).json({ message: "Invalid email or password" })
     }
     if (password !== user.password) {
-        return res.status(401).json({ message: 'Invalid username or password' });
+        return res.status(401).json({ message: 'Invalid email or password' });
     }
-    await User.findOneAndUpdate({ name: name }, { status: true });
+    await User.findOneAndUpdate({ email: email }, { status: true });
+    res.send({ message: 'Login successful', token: user._id });
+    console.log(user);
+});
+// getAdminAuth
+router.post('/signin/isAdmin', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+    if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" })
+    }
+    if (password !== user.password) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+    }
+    if (true !== user.isAdmin) {
+        return res.status(401).json({ message: 'Invalid email or password or not an Admin' });
+    }
+    await User.findOneAndUpdate({ email: email }, { status: true });
     res.send({ message: 'Login successful', token: user._id });
     console.log(user);
 });
@@ -34,6 +51,10 @@ router.post("/add-user", async (req, res) => {
         phone: req.body.phone,
         isAdmin: req.body.isAdmin
     });
+    const checkUser = await User.findOne({ email: user.email });
+    if (checkUser) {
+        return res.status(401).json({ message: "User Already Register" });
+    }
     const resp = await user.save();
     res.send(resp);
 });

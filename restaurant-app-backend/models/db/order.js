@@ -28,6 +28,11 @@ const orderSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
+    address: {
+        type: String,
+        required: true,
+        min: 0
+    },
     status: {
         type: String,
         required: true,

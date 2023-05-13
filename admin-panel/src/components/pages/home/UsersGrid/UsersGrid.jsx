@@ -1,6 +1,6 @@
-import { Col, Empty, Result, Row, Spin, Typography, Title, Container, Button, } from "antd";
-import { Space, Table, Tag } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Col, Empty, Result, Row, Spin, Typography,Button} from "antd";
+import { Space, Table} from 'antd';
+import { PlusOutlined, WifiOutlined, DeleteOutlined, FormOutlined, DisconnectOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +16,9 @@ const UsersGrid = () => {
   // getting users using api
   const getusers = async () => {
     try {
-    //   setIsLoading(true);
+        setIsLoading(true);
       const { data } = await axios.get('http://localhost:8000/users/');
-      console.log(data)
+      // console.log(data)
       setusers(data);
     } catch (error) {
       setError(error.message);
@@ -29,7 +29,10 @@ const UsersGrid = () => {
   const navigate = useNavigate();
   const updateBtnHandler = (id) => {
     localStorage.setItem("updateId", id);
-    navigate('/update-user/', { replace: true });
+    navigate('/users/update-user/', { replace: true });
+  }
+  const addUserBtnHandler = () => {
+    navigate('/users/add-user/', { replace: true });
   }
   const deleteBtnHandler = (id) => {
     if (window.confirm("Are you sure, You want to delete this user!")) {
@@ -55,8 +58,9 @@ const UsersGrid = () => {
   const columns = [
     {
       title: 'Status',
-      dataIndex: 'status',
+      // dataIndex: 'status',
       key: 'status',
+      render: (_, record) => (record.status) ? <WifiOutlined style={{ color: 'green' }} /> : <DisconnectOutlined style={{ color: 'red' }} />,
     },
     {
       title: 'Name',
@@ -80,26 +84,27 @@ const UsersGrid = () => {
     },
     {
       title: 'IsAdmin',
-      dataIndex: 'isAdmin',
       key: 'isAdmin',
+      render: (_, record) => (record.isAdmin) ? <CheckOutlined style={{ color: 'green' }} /> : <CloseOutlined style={{ color: 'red' }} />,
     },
     {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Button type="primary" id={record._id} onClick={() => updateBtnHandler(record._id)}>Update</Button>
-          <Button type="primary" id={record._id} onClick={() => deleteBtnHandler(record._id)}>Delete</Button>
+          <Button type="primary" id={record._id} onClick={() => updateBtnHandler(record._id)}><FormOutlined /> Update</Button>
+          <Button type="primary" id={record._id} onClick={() => deleteBtnHandler(record._id)}><DeleteOutlined /> Delete</Button>
 
         </Space>
       ),
     },
   ]
+
   const getJsx = () => {
     if (users.length > 0) {
       return (
         <Row gutter={[20, 30]}>
-          <Table columns={columns} dataSource={users} />
+          <Table columns={columns} dataSource={users} style={{ width: '100%' }} />
         </Row>
       );
     } else if (!users.length) {
@@ -109,11 +114,11 @@ const UsersGrid = () => {
     }
   };
   return (
-    // <Container>
-    <Row justify="center">
+    <div style={{marginTop:50}}>
+    <Row justify="center" style={{ width: '80%', margin: 'auto' }}>
       <Col span={24}>
-        <Title level={2}>Users</Title>
-        <Button href="http://localhost:3000/add-user"><PlusOutlined />Add User</Button>
+        <Title level={3} style={{ textAlign: 'center' }}>Users</Title>
+        <Button onClick={addUserBtnHandler}><PlusOutlined />Add User</Button>
       </Col>
       <Col span={24}>
         <Spin style={{ position: "absolute" }} spinning={isLoading}>
@@ -121,7 +126,7 @@ const UsersGrid = () => {
         </Spin>
       </Col>
     </Row>
-    // </Container>
+    </div>
   );
 }
 

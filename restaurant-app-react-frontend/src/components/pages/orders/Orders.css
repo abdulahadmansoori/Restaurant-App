@@ -1,0 +1,7 @@
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    font-weight: 600;
+    color: #474747;
+  }

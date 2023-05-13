@@ -1,10 +1,10 @@
 import "./ProductGrid.css";
-import { Col, Empty, Result, Row, Spin, Typography, Title, Container, Button, } from "antd";
-import { Space, Table, Tag } from 'antd';
+import { Col, Empty, Result, Row, Spin, Typography, Button } from "antd";
+import { Space, Table } from 'antd';
 import { PlusOutlined, EditFilled, DeleteFilled } from '@ant-design/icons';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductGrid = () => {
@@ -29,7 +29,10 @@ const ProductGrid = () => {
 
   const updateBtnHandler = (id) => {
     localStorage.setItem("updateId", id);
-    navigate('/update-product/', { replace: true });
+    navigate('/products/update-product/', { replace: true });
+  }
+  const addProductBtnHandler = () => {
+    navigate('/products/add-product', { replace: true });
   }
   const deleteBtnHandler = (id) => {
     if (window.confirm("Are you sure, You want to delete this product!")) {
@@ -51,14 +54,9 @@ const ProductGrid = () => {
       await getProducts();
     })();
   }, []);
-  
+
   const { Title } = Typography;
   const columns = [
-    {
-      title: 'Id',
-      dataIndex: 'id',
-      key: 'id',
-    },
     {
       title: 'Image',
       dataIndex: 'image',
@@ -96,11 +94,11 @@ const ProductGrid = () => {
     },
   ]
   const getJsx = () => {
-    console.log(products);
+    // console.log(products);
     if (products.length > 0) {
       return (
         <Row gutter={[20, 30]}>
-          <Table columns={columns} dataSource={products} />
+          <Table columns={columns} dataSource={products} style={{ width: '100%' }} />
         </Row>
       );
     } else if (!products.length) {
@@ -110,17 +108,19 @@ const ProductGrid = () => {
     }
   };
   return (
-    <Row justify="center">
-      <Col span={24}>
-        <Title level={2}>Products</Title>
-        <Button href="http://localhost:3000/add-product"><PlusOutlined />Add Product</Button>
-      </Col>
-      <Col span={24}>
-        <Spin style={{ position: "absolute" }} spinning={isLoading}>
-          {getJsx()}
-        </Spin>
-      </Col>
-    </Row>
+    <div style={{ marginTop: 50 }}>
+      <Row justify="center" style={{ width: "80%", margin: 'auto' }}>
+        <Col span={24}>
+          <Title level={3} style={{ textAlign: 'center' }}>Products</Title>
+          <Button onClick={addProductBtnHandler}><PlusOutlined />Add Product</Button>
+        </Col>
+        <Col span={24}>
+          <Spin style={{ position: "absolute" }} spinning={isLoading}>
+            {getJsx()}
+          </Spin>
+        </Col>
+      </Row>
+    </div>
   );
 }
 

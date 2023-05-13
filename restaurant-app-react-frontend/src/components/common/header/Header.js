@@ -10,11 +10,13 @@ import "./Header.css";
 const loggedOutHeaderMenu = [
   { label: "Home", key: "" },
   { label: "Cart", key: "cart" },
+  { label: "Orders", key: "orders" },
   { label: "Sign In", key: "signin" },
 ];
 const loggedInHeaderMenu = [
   { label: "Home", key: "" },
   { label: "Cart", key: "cart" },
+  { label: "Orders", key: "orders" },
   { label: "Sign Out", key: "signout" },
 ];
 const Header = () => {
@@ -65,6 +67,7 @@ const Header = () => {
             />
           </Col>
           <Col xs={1} lg={1} align="right">
+          <Link to="/cart">
             <Badge
               color={token.colorSuccess}
               style={{ borderColor: token.colorSuccess }}
@@ -75,6 +78,7 @@ const Header = () => {
                 size={30}
               />
             </Badge>
+            </Link>
           </Col>
         </Row>
       </Container>

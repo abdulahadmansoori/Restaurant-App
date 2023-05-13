@@ -1,5 +1,10 @@
 footer {
   background-color: #222222;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px 50px;
+  position: fixed;
+  bottom: 0;
+  /* width: 100vw; */
+  /* border-top-left-radius: 5px; */
+  border-top-right-radius: 50px;
 }

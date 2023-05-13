@@ -1,78 +1,28 @@
-import { PieChartOutlined, UserOutlined, TeamOutlined} from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { useState } from 'react';
 import ProductGrid from '../ProductGrid/ProductGrid';
-const { Header, Content, Footer, Sider } = Layout;
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
+import UsersGrid from '../UsersGrid/UsersGrid';
+import OrderGrid from '../OrderGrid/OrderGrid';
+import { Tabs } from 'antd';
+const onChange = (key) => {
+  // console.log(key);
 };
-const items = [
-  getItem('Products', '1', <PieChartOutlined />),
-  getItem('Users', '2', <TeamOutlined />),
-  getItem('Admins', '3', <UserOutlined />),
-];
-const Panel = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-  return (
-    <Layout
-      style={{
-        minHeight: '100vh',
-      }}
-    >
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-          <div style={{
-            height: 32,
-            margin: 16,
-            paddingTop:8,
-            background: 'rgba(255, 255, 255, 0.2)',
-            color: "white",
-            textAlign:"center",
-            fontWeight:900,
-          }}>Admin Panel</div>
-
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
-      </Sider>
-      <Layout className="site-layout" style={{
-              background: colorBgContainer,}}>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        />
-        <Content
-          style={{
-            margin: '0 16px',
-          }}
-        >
-          <Breadcrumb
-            style={{
-              margin: '16px 0',
-            }}
-          >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-            }}
-          >
-            <ProductGrid/>
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
-  );
-};
+const Panel = () => (
+  <Tabs
+    style={{
+      width:'80%',
+      margin:'auto'
+    }}
+    onChange={onChange}
+    type="card"
+    items={new Array(3).fill(null).map((_, i) => {
+      const id = String(i);
+      const label = ['products','users','orders'];
+      const grid = [<ProductGrid/>,<UsersGrid/>,<OrderGrid/>]
+      return {
+        label: (label[id]),
+        key: id,
+        children: (grid[id]),
+      };
+    })}
+  />
+);
 export default Panel;

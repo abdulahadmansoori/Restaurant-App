@@ -1,15 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import dummyJson from "../../api/dummyJson";
+import axios from "axios";
 
 export const signinUser = createAsyncThunk(
   "user/signin",
-  async ({ username, password }) => {
-    const result = await dummyJson.post("auth/login", {
-      // username: "kminchelle",
-      // password: "0lelplR",
-      username,
-      password,
-    });
+  async ({ email, password }) => {
+    const result = await axios.post(`http://localhost:8000/users/signin/isAdmin`, { email, password });
+    console.log(result.data.token);
     return result.data.token;
   }
 );
@@ -18,7 +14,7 @@ export const createUser = createAsyncThunk(
   "user/create",
 
   async ({ username, email, password }) => {
-    return await dummyJson.post("auth/signup", {
+    return await axios.post(`http://localhost:8000/users/signup/`, {
       username,
       email,
       password,
@@ -57,18 +53,6 @@ export const authSlice = createSlice({
     addCase(signinUser.rejected, (state, action) => {
       state.isLoading = false;
       state.isAuthenticated = false;
-    });
-
-    // Create User
-    addCase(createUser.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    addCase(createUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isAuthenticated = true;
-    });
-    addCase(createUser.rejected, (state, action) => {
-      state.isLoading = false;
     });
 
     // Logout User

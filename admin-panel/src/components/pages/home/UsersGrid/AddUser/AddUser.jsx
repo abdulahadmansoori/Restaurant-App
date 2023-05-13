@@ -1,5 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const { Option } = Select;
 const layout = {
     labelCol: {
@@ -17,6 +18,7 @@ const tailLayout = {
 };
 const AddUser = () => {
     const [form] = Form.useForm();
+    const navigate = useNavigate();
     const onFinish = (values) => {
         if (window.confirm("Are you sure, you want to add this User?")) {
             let status ="";
@@ -37,6 +39,9 @@ const AddUser = () => {
     };
     const onReset = () => {
         form.resetFields();
+    };
+    const cancelBtnHandler = () => {
+        navigate('/users', { replace: true });
     };
     return (
         <>
@@ -130,7 +135,7 @@ const AddUser = () => {
                     <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
-                    <Button type="link" htmlType="button" href='http://localhost:3000/Users'>
+                    <Button onClick={cancelBtnHandler}>
                         Cancel
                     </Button>
                 </Form.Item>

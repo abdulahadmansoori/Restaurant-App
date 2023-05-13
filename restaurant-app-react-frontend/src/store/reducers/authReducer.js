@@ -5,14 +5,8 @@ import { Cookies, useCookies } from "react-cookie";
 
 export const signinUser = createAsyncThunk(
   "user/signin",
-  async ({ name, password }) => {
-    const result = await axios.post(`http://localhost:8000/users/signin/`, { name, password });
-    // const result = await dummyJson.post("auth/login", {
-    // //   // username: "kminchelle",
-    // //   // password: "0lelplR",
-    //   name,
-    //   password,
-    // });
+  async ({ email, password }) => {
+    const result = await axios.post(`http://localhost:8000/users/signin/`, { email, password });
     console.log(result.data.token);
     return result.data.token;
   }

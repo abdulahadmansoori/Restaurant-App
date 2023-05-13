@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCart } from "../../../store/reducers/cartReducer";
 import TextArea from "antd/es/input/TextArea";
+import axios from 'axios';
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -25,24 +26,39 @@ const CheckoutForm = () => {
   const formSubmitHandler = (values) => {
     const userInfo = { ...values };
     let products = [];
-    let total=0;
+    let total = 0;
     cart.map((p) => {
       products.push({
-        '_id': p._id,
+        'product': p._id,
         'quantity': p.quantity
       });
-      total+=p.price;
+      total += p.price;
     })
-    total=total+((total/100)*2)+2.99
+    total = total + ((total / 100) * 2) + 2.99
     const order = {
       'user': cookies.token,
-      'orderName': userInfo.firstName +' '+ userInfo.lastName,
-      'address': userInfo.address +', '+ userInfo.zipCode +', '+ userInfo.city +', '+ userInfo.state +', '+ userInfo.country,
+      'orderName': userInfo.firstName + ' ' + userInfo.lastName,
+      'address': userInfo.address + ', ' + userInfo.zipCode + ', ' + userInfo.city + ', ' + userInfo.state + ', ' + userInfo.country,
       'products': products,
       'total': total,
     }
+    if (window.confirm("Are you sure, you want to place this order?")) {
+      let status = "";
+      try {
+        axios.post('http://localhost:8000/orders/place-order', order);
+        status = "Product Added Succesfully";
+        success();
+      }
+      catch (error) {
+        console.log(error.message);
+        status = error.message;
+      }
+      finally {
+        console.log(status);
+      }
+    }
     console.log(order);
-    success();
+
   };
   const { Option } = Select;
   return (
@@ -60,19 +76,14 @@ const CheckoutForm = () => {
       <Form.Item name="country" rules={[{ required: true, message: 'Please input your country!' }]}>
         <Select placeholder="Country/Region">
           <Select.Option value="pakistan">Pakistan</Select.Option>
-          <Select.Option value="india">India</Select.Option>
-          <Select.Option value="bangladesh">Bangladesh</Select.Option>
-          <Select.Option value="afghanistan">Afghanistan</Select.Option>
         </Select>
       </Form.Item>
-
-      {/* <Form.Item name="apartment">
-        <Input placeholder="Apartment, suit, etc. (optional)" />
-      </Form.Item> */}
-
+      
       <div className="flex">
         <Form.Item name="city" rules={[{ required: true, message: 'Please input your city!' }]}>
-          <Input placeholder="City" />
+          <Select placeholder="City">
+            <Option value={"karachi"}>karachi</Option>
+          </Select>
         </Form.Item>
 
         <Form.Item name="state" rules={[{ required: true, message: 'Please input your state!' }]}>
@@ -80,7 +91,7 @@ const CheckoutForm = () => {
         </Form.Item>
 
         <Form.Item name="zipCode" rules={[{ required: true, message: 'Please input your zipcode' }]}>
-          <Input placeholder="ZIP code" />
+          <Input placeholder="ZIP code" type="number" />
         </Form.Item>
       </div>
       <Form.Item name="address" rules={[{ required: true, message: 'Please input your other info like flat #, Apartment, near by place' }]}>

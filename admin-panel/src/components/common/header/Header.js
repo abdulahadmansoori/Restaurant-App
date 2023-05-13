@@ -9,12 +9,16 @@ import "./Header.css";
 
 const loggedOutHeaderMenu = [
   { label: "Home", key: "" },
-  { label: "Cart", key: "cart" },
+  { label: "Products", key: "products" },
+  { label: "Orders", key: "orders" },
+  { label: "Users", key: "users" },
   { label: "Sign In", key: "signin" },
 ];
 const loggedInHeaderMenu = [
   { label: "Home", key: "" },
-  { label: "Cart", key: "cart" },
+  { label: "Products", key: "products" },
+  { label: "Orders", key: "orders" },
+  { label: "Users", key: "users" },
   { label: "Sign Out", key: "signout" },
 ];
 const Header = () => {
@@ -48,7 +52,7 @@ const Header = () => {
           >
             <Link to="/">
               <Typography.Title level={3} style={{ marginTop: 10 }}>
-                Restaurant App
+                Admin Panel
               </Typography.Title>
             </Link>
           </Col>

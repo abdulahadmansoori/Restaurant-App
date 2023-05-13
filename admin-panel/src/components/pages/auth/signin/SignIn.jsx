@@ -42,16 +42,20 @@ const SignIn = () => {
               }}
               onFinish={signInHandler}
             >
-              {/* <Form.Item
+              <Form.Item
                 name="email"
                 rules={[
                   { required: true, message: "Email is required" },
-                  { type: "email", message: "Please enter a valid email" },
+                  { type: "text", message: "Please enter a valid Email" },
+                  {
+                    min: 5,
+                    message: "Username must be minimum 5 characters.",
+                  },
                 ]}
               >
-                <Input placeholder="Email" />
-              </Form.Item> */}
-              <Form.Item
+                <Input placeholder="Email" type="email"/>
+              </Form.Item>
+              {/* <Form.Item
                 name="username"
                 rules={[
                   { required: true, message: "User Name is required" },
@@ -63,7 +67,7 @@ const SignIn = () => {
                 ]}
               >
                 <Input placeholder="User Name" />
-              </Form.Item>
+              </Form.Item> */}
 
               <Form.Item
                 name="password"
@@ -85,13 +89,13 @@ const SignIn = () => {
                 </Button>
               </Form.Item>
             </Form>
-            <Button
+            {/* <Button
               onClick={() => navigate("/signup")}
               type="link"
               className=""
             >
               Create Account
-            </Button>
+            </Button> */}
           </div>
         </section>
       </div>

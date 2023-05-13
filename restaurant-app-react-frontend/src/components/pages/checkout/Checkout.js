@@ -14,7 +14,6 @@ const Checkout = () => {
   return (
     <div className="checkout">
       <div className="checkout__left-section">
-        {/* <h2>Foodoliv - Fast Food Store</h2> */}
 
         <Breadcrumb separator={<RightOutlined className="icon" />}>
           <Breadcrumb.Item>Cart</Breadcrumb.Item>
@@ -23,15 +22,9 @@ const Checkout = () => {
           <Breadcrumb.Item>Payment</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* <h4>Contact information</h4>
-        <p className="account-detail">Fuzail Ahmed (fuzail@mailinter.com)</p>
-        <p className="logout">Log out</p> */}
 
         <h3>Shipping address</h3>
         <CheckoutForm />
-        {/* <div className="footer">
-          All rights reserved Foodoliv - Fast Food Store
-        </div> */}
       </div>
 
       <div className="checkout__right-section">

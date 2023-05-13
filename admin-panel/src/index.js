@@ -4,9 +4,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import Auth from "./components/pages/auth/Auth";
-import ProductGrid from "./components/pages/home/ProductGrid/ProductGrid";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

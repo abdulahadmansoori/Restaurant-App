@@ -1,5 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const layout = {
     labelCol: {
@@ -17,6 +18,7 @@ const tailLayout = {
 };
 const AddProduct = () => {
     const [form] = Form.useForm();
+    const navigate = useNavigate()
     const onFinish = (values) => {
         if (window.confirm("Are you sure, you want to add this product?")) {
             let status ="";
@@ -24,6 +26,7 @@ const AddProduct = () => {
                 axios.post('http://localhost:8000/products/add-product', values);
                 status = "Product Added Succesfully";
                 form.resetFields();
+                navigate('/products');
             }
             catch(error){
                 console.log(error.message);
@@ -37,6 +40,9 @@ const AddProduct = () => {
     const onReset = () => {
         form.resetFields();
     };
+    const cancelBtnHandler = () => {
+        navigate('/products', { replace: true });
+    };
     return (
         <>
             <Form
@@ -46,7 +52,8 @@ const AddProduct = () => {
                 onFinish={onFinish}
                 style={{
                     maxWidth: 600,
-                    margin: "5% auto"
+                    margin: "5% auto",
+                    marginBottom:"10%"
                 }}
             >
                 <h1 style={{ textAlign: 'center', fontWeight: 600 }}>Add Product</h1>
@@ -103,7 +110,7 @@ const AddProduct = () => {
                     <Button htmlType="button" onClick={onReset}>
                         Reset
                     </Button>
-                    <Button type="link" htmlType="button" href='http://localhost:3000/'>
+                    <Button onClick={cancelBtnHandler}>
                         Cancel
                     </Button>
                 </Form.Item>
