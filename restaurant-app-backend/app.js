@@ -28,8 +28,8 @@ app.use((req, res, next) => { //  Auth Middleware
 });
 
 app.use("/auth", auth);
-app.use("/todo", verify, todo);
-app.use("/form", form);
+// app.use("/todo", verify, todo);
+// app.use("/form", form);
 app.use("/products", products);
 app.use("/users", users);
 app.use("/orders", orders);

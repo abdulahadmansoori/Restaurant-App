@@ -1,7 +1,7 @@
 import "./ProductGrid.css";
 import { Col, Empty, Result, Row, Spin, Typography, Button } from "antd";
 import { Space, Table } from 'antd';
-import { PlusOutlined, EditFilled, DeleteFilled } from '@ant-design/icons';
+import { PlusOutlined, EditFilled, DeleteFilled , CheckOutlined, CloseOutlined} from '@ant-design/icons';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +79,11 @@ const ProductGrid = () => {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
+    },
+    {
+      title: 'Avaliablity',
+      key: 'price',
+      render: (_, record) => (record.status === 'Avaliable')? (<CheckOutlined style={{color:'green'}}/>):(<CloseOutlined style={{color:'red'}}/>),
     },
     {
       title: 'Action',
